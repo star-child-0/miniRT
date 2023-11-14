@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 18:40:50 by anvannin          #+#    #+#             */
-/*   Updated: 2023/10/12 21:35:26 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:05:01 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void	render(t_mlx **mlx, t_scene *scene)
 	render_center_cross(*mlx);
 	mlx_put_image_to_window((*mlx)->mlx_ptr, (*mlx)->win_ptr,
 		(*mlx)->img.img_ptr, 0, 0);
+	log_camera(t_scene_get_camera(scene));
 	window_labels(*mlx);
 }

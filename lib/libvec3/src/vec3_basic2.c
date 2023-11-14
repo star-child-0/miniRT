@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 10:38:00 by kichkiro          #+#    #+#             */
-/*   Updated: 2023/10/12 21:45:04 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:17:47 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_v3	v_sub_vec(t_v3 a, t_v3 b)
 
 /*!
  * @brief
-	Moltiplicate two vectors.
+	Multiplicate two vectors.
  * @param a
 	First vector.
  * @param b

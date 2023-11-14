@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 09:45:57 by kichkiro          #+#    #+#             */
-/*   Updated: 2023/11/10 18:18:58 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:28:40 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_cylinder
 
 typedef struct s_scene
 {
-	int				id; //num of object
+	int				id;
 	unsigned char	type;
 	bool			unique;
 	bool			selected;
