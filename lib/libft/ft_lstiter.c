@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_pointer.c                                     :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iragusa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 21:43:52 by anvannin          #+#    #+#             */
-/*   Updated: 2023/10/12 21:44:22 by anvannin         ###   ########.fr       */
+/*   Created: 2022/10/25 17:41:31 by iragusa           #+#    #+#             */
+/*   Updated: 2022/10/25 17:42:41 by iragusa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "vec3.h"
-
-t_v3	*v_pointer(t_v3 v)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_v3	*vp;
+	t_list	*ptr;
 
-	vp = malloc(sizeof(t_v3));
-	vp->x = v.x;
-	vp->y = v.y;
-	vp->z = v.z;
-	return (vp);
+	if (!lst)
+		return ;
+	ptr = lst;
+	while (ptr)
+	{
+		(*f)(ptr->content);
+		ptr = ptr->next;
+	}
 }

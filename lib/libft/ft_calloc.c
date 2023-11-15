@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_pointer.c                                     :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iragusa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 21:43:52 by anvannin          #+#    #+#             */
-/*   Updated: 2023/10/12 21:44:22 by anvannin         ###   ########.fr       */
+/*   Created: 2022/10/13 18:29:09 by iragusa           #+#    #+#             */
+/*   Updated: 2022/10/13 18:29:19 by iragusa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
+#include <stdint.h>
 
-#include "vec3.h"
-
-t_v3	*v_pointer(t_v3 v)
+void	*ft_calloc(size_t count, size_t size)
 {
-	t_v3	*vp;
+	char	*ptr;
+	size_t	i;
 
-	vp = malloc(sizeof(t_v3));
-	vp->x = v.x;
-	vp->y = v.y;
-	vp->z = v.z;
-	return (vp);
+	i = size * count;
+	ptr = malloc(i);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, i);
+	return (ptr);
 }

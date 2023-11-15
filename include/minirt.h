@@ -25,6 +25,7 @@
 # include <stdio.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+#include <stdbool.h>
 
 // Defines -------------------------------------------------------------------->
 

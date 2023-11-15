@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_pointer.c                                     :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iragusa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 21:43:52 by anvannin          #+#    #+#             */
-/*   Updated: 2023/10/12 21:44:22 by anvannin         ###   ########.fr       */
+/*   Created: 2022/10/22 12:44:33 by iragusa           #+#    #+#             */
+/*   Updated: 2022/10/22 12:45:53 by iragusa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "libft.h"
 
-t_v3	*v_pointer(t_v3 v)
+int	ft_lstsize(t_list *lst)
 {
-	t_v3	*vp;
+	t_list	*ptr;
+	int		i;
 
-	vp = malloc(sizeof(t_v3));
-	vp->x = v.x;
-	vp->y = v.y;
-	vp->z = v.z;
-	return (vp);
+	ptr = lst;
+	i = 0;
+	while (ptr != NULL)
+	{
+		ptr = ptr->next;
+		i++;
+	}
+	return (i);
 }

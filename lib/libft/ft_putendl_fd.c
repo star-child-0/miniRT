@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_pointer.c                                     :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iragusa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 21:43:52 by anvannin          #+#    #+#             */
-/*   Updated: 2023/10/12 21:44:22 by anvannin         ###   ########.fr       */
+/*   Created: 2022/10/17 17:59:24 by iragusa           #+#    #+#             */
+/*   Updated: 2022/10/17 17:59:51 by iragusa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "vec3.h"
-
-t_v3	*v_pointer(t_v3 v)
+void	ft_putendl_fd(char *s, int fd)
 {
-	t_v3	*vp;
+	char	n;
 
-	vp = malloc(sizeof(t_v3));
-	vp->x = v.x;
-	vp->y = v.y;
-	vp->z = v.z;
-	return (vp);
+	n = '\n';
+	write(fd, s, ft_strlen(s));
+	write(fd, &n, 1);
 }

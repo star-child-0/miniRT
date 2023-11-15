@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_pointer.c                                     :+:      :+:    :+:   */
+/*   ft_findchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iragusa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 21:43:52 by anvannin          #+#    #+#             */
-/*   Updated: 2023/10/12 21:44:22 by anvannin         ###   ########.fr       */
+/*   Created: 2022/10/29 20:57:58 by iragusa           #+#    #+#             */
+/*   Updated: 2022/10/29 20:59:29 by iragusa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "vec3.h"
-
-t_v3	*v_pointer(t_v3 v)
+int	ft_findchar(char c, char *s)
 {
-	t_v3	*vp;
+	int	i;
 
-	vp = malloc(sizeof(t_v3));
-	vp->x = v.x;
-	vp->y = v.y;
-	vp->z = v.z;
-	return (vp);
+	i = 0;
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return (1);
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char) c)
+			return (1);
+		i++;
+	}
+	return (0);
 }

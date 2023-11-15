@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iragusa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 09:45:57 by kichkiro          #+#    #+#             */
-/*   Updated: 2023/11/10 18:18:58 by anvannin         ###   ########.fr       */
+/*   Created: 2023/08/03 17:09:12 by iragusa           #+#    #+#             */
+/*   Updated: 2023/08/03 17:09:14 by iragusa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // Libraries ------------------------------------------------------------------>
 
 # include "minirt.h"
+#include <stdbool.h>
 # include <fcntl.h>
 
 // Defines -------------------------------------------------------------------->
@@ -26,6 +27,17 @@
 # define SPHERE				4
 # define PLANE				5
 # define CYLINDER			6
+
+// Errors -------------------------------------------------------------------->
+
+# define NOARGS "check input, write:./minirt scenes/mandatory.rt"
+# define NOSIZE "the last two args are size of win, so they can be only digits!"
+# define NOINIT "something's wrong during initialization, try again"
+# define NOFILE "no such file!"
+# define NO_RT "ehy dude, only .rt file!"
+# define MALLOC "oh no, error in malloc() on memory allocation"
+# define ACL_ERR "check file rt! need 1 A, 1 C, at least 1 L and at most 1 R!"
+# define CHECK_RT ",check your params!"
 
 // Structures ----------------------------------------------------------------->
 
@@ -110,15 +122,48 @@ t_ambient_lightning	*t_scene_get_ambient_light(t_scene *scene);
 
 // Functions ------------------------------------------------------------------>
 
-void				parser(char *filename, t_scene **scene);
-t_v3				*get_coords(char **line, t_scene *scene);
-t_rgb				*get_rgb(char **line, t_scene *scene);
-double				get_value(char **line, t_scene *scene);
-void				*parse_ambient_lightning(char *line, t_scene *scene);
-void				*parse_camera(char *line, t_scene *scene);
-void				*parse_light(char *line, t_scene *scene);
-void				*parse_sphere(char *line, t_scene *scene);
-void				*parse_plane(char *line, t_scene *scene);
-void				*parse_cylinder(char *line, t_scene *scene);
+/*file check_rt.c*/
+int				contchar(t_scene *w, char **rt);
+char			*ft_strjoin2(char *s1, char *s2);
+
+/*file read_rt.c*/
+int				ft_check_file(char *scene);
+bool			get_unique(char *line, t_scene *scene, char type);
+void			ft_read_rt(t_scene *w, char *scene);
+int				ft_open_rt(t_scene *w, char **av);
+void			ft_initcam(t_scene *w);
+
+/*file parsing.c*/
+float			tofloat(char **str);
+t_rgb			*color_parse(char **str, t_scene *w, void *s, char **rt);
+t_v3			*pos_parse(char **str, t_scene *w, void *s, char **rt);
+void			ft_line_parser(t_scene **w, char **rt);
+
+
+/*file parse_utils2.c*/
+int				ft_char_digit(char *str);
+void			*sux_malloc(unsigned int size, t_scene *w, char **rt);
+void			next_val(char **str);
+int				my_atoi(char **str);
+void			ft_comma(char **str, t_scene *w, void *s, char **rt);
+
+/*file parse_utils.c*/
+
+void			free_obj(t_list *scene);
+int				ft_print_error(char *err, t_scene **w, void *del, char **rt);
+int				ft_checkset(char c, char *s);
+t_v3			*v3d_normalize(t_v3 *in);
+
+/*file parse_data.c*/
+void 			*camera_update(t_scene *w);
+void 			*parse_res(t_scene *w, char **line, char **rt);
+void 			*parse_amb(t_scene *w, char **line, char **rt);
+void 			*parse_cam(t_scene *w, char **line, char **rt);
+void 			*parse_light(t_scene *w, char **line, char **rt);
+
+/*file parse_obj.c*/
+void 			*parse_sphere(t_scene *w, char **line, char **rt);
+void 			*parse_plane(t_scene *w, char **line, char **rt);
+void			*parse_cylinder(t_scene *w, char **line, char **rt);
 
 #endif

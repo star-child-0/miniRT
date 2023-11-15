@@ -14,11 +14,11 @@
 
 void	errors_handler(char *msg, t_mlx *mlx, t_scene **scene)
 {
-	ft_putstr_fd(RED, 2);
+	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("\n", 2);
-	ft_putstr_fd(RESET, 2);
+	ft_putstr_fd(msg, 2);
 	if (scene)
 		t_scene_free(scene);
 	if (mlx)

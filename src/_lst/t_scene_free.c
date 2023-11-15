@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_scene_free.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kichkiro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: iragusa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 10:58:44 by kichkiro          #+#    #+#             */
-/*   Updated: 2023/10/02 19:51:59 by kichkiro         ###   ########.fr       */
+/*   Created: 2023/08/03 17:09:12 by iragusa           #+#    #+#             */
+/*   Updated: 2023/08/03 17:09:14 by iragusa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	free_geometric_obj(t_scene **scene)
 
 void	t_scene_free(t_scene **scene)
 {
-	t_scene	*tmp;
+t_scene	*tmp;
 
 	tmp = NULL;
 	t_scene_set_to_head(scene);

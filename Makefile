@@ -30,11 +30,12 @@ SRCS        := \
 				main/validator.c \
 				main/terminator.c \
 				\
-				parsing/parser.c \
-				parsing/get_value.c \
-				parsing/camera.c \
-				parsing/geometric_obj.c \
-				parsing/lighting_obj.c \
+				parsing/check_rt.c \
+				parsing/parse_data.c \
+				parsing/parse_obj.c \
+				parsing/parse_utils.c \
+				parsing/read_rt.c \
+				parsing/parsing.c \
 				\
 				rendering/render.c \
 				rendering/intersections.c \
@@ -67,7 +68,7 @@ OBJS        := $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS        := $(OBJS:.o=.d)
 CC          := gcc
 CFLAGS      := -g #-Wall -Wextra -Werror
-MLXFLAGS    := -lXext -lX11 -lm -lbsd
+MLXFLAGS    := -lXext -lX11 -lm 
 CPPFLAGS    := $(addprefix -I,$(INCS)) -MMD -MP
 LDFLAGS     := $(addprefix -L,$(dir $(LIBS_TARGET)))
 LDLIB      	:= $(addprefix -l,$(LIBS))
