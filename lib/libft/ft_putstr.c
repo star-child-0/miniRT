@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_pointer.c                                     :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iragusa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 21:43:52 by anvannin          #+#    #+#             */
-/*   Updated: 2023/10/12 21:44:22 by anvannin         ###   ########.fr       */
+/*   Created: 2022/05/15 17:22:46 by iragusa           #+#    #+#             */
+/*   Updated: 2022/05/15 17:23:06 by iragusa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <unistd.h>
 
-#include "vec3.h"
-
-t_v3	*v_pointer(t_v3 v)
+void	ft_putstr(char *str)
 {
-	t_v3	*vp;
-
-	vp = malloc(sizeof(t_v3));
-	vp->x = v.x;
-	vp->y = v.y;
-	vp->z = v.z;
-	return (vp);
+	while (*str != '\0')
+	{
+		write(1, str, 1);
+		str ++;
+	}
 }
+/*int main(void)
+{
+  ft_putstr("Toppone!");
+  return 0;
+}*/
