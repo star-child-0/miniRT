@@ -91,7 +91,7 @@ void	ft_put_di(int d, t_flags *flag)
 	}
 	ft_putint(d, flag);
 	if (!flag->zero && flag->meno)
-	{	
+	{
 		if (((flag->sign || flag->sp) && d >= 0))
 			flag->wdt--;
 		ft_print_space(flag);
@@ -112,7 +112,7 @@ void	ft_put_u(unsigned long u, t_flags *flag)
 	if (u == 0)
 		ft_print_numzero(flag);
 	else
-	{	
+	{
 		ft_printprec(flag);
 		ft_putnstr_fd(uint, flag->len, 1);
 		flag->ret += flag->len;

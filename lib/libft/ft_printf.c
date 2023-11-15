@@ -9,6 +9,7 @@
 /*   Updated: 2022/10/29 19:27:05 by iragusa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 t_flags	*ft_inizializza_flag(t_flags *flag)
@@ -49,7 +50,7 @@ int	ft_printf(const char *src, ...)
 		if (*src != '%')
 			ft_printsrc(src, flag);
 		else
-		{	
+		{
 			flag = ft_inizializza_flag(flag);
 			src = ft_checkchar(flag, src + 1);
 		}

@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0))
 	{
 		if (ret != NULL)
-		{	
+		{
 			free(ret);
 			ret = NULL;
 		}
@@ -114,26 +114,3 @@ char	*get_next_line(int fd)
 	ret = ft_next_ret(ret);
 	return (line);
 }
-
-/*int	main(void)
-{
-	char *temp;
-	char *temp2;
-	char *temp3;
-	char *temp4;
-	int file_descriptor = open("prova", O_RDONLY);
-	//printf("file_descriptor: %d \n", file_descriptor);
-	temp = get_next_line(file_descriptor);
-	temp2 = get_next_line(file_descriptor);
-	temp3 = get_next_line(file_descriptor);
-	temp4 = get_next_line(file_descriptor);
-	printf("%s", temp);
-	free(temp);
-	printf("%s", temp2);
-	free(temp2);
-	printf("%s", temp3);
-	free(temp3);
-	printf("%s", temp4);
-	free(temp4);
-	return (0);
-}*/
