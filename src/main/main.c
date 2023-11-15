@@ -19,7 +19,6 @@ int	main(int argc, char **argv)
 	t_mlx	*mlx;
 
 	scene = NULL;
-	validator(argc, argv);
 	ft_open_rt(&scene, argv);
 	window_init(&mlx);
 	render(&mlx, scene);

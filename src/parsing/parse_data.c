@@ -82,14 +82,13 @@ void *parse_cam(t_scene *w, char **line, char **rt)
 	cam->origin = pos_parse(line, w, (t_camera *)cam, rt);
 	next_val(line);
 	cam->direction = pos_parse(line, w, NULL, rt);
-	cam->direction = v3d_normalize(cam->direction);
 	next_val(line);
 	if (cam->direction->x > 1 || cam->direction->x < -1
 		|| cam->direction->y > 1 || cam->direction->y < -1
 		|| cam->direction->z > 1 || cam->direction->z < -1)
 		ft_print_error("cam orientation out of range!", &w, cam, rt);
 	next_val(line);
-	cam->fov = pow(my_atoi(line) / (double )70, 2);
+	cam->fov = tofloat(line);
 	if (cam->fov < 0 || cam->fov > 180)
 		ft_print_error("cam FOV out of range", &w, cam, rt);
 	cam->w = v_unit(v_sub_vec((*cam->origin), (t_v3){0, 0, 0}));

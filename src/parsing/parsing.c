@@ -64,9 +64,6 @@ t_v3	*pos_parse(char **str, t_scene *w, void *s, char **rt)
 	t_v3	*pos;
 
 	pos = (t_v3 *)ft_calloc(sizeof(t_v3), 1);
-	pos->x = 0;
-	pos->y = 0;
-	pos->z = 0;
 	next_val(str);
 	pos->x = tofloat(str);
 	ft_comma(str, w, s, rt);

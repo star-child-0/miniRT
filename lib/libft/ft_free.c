@@ -13,6 +13,8 @@
 
 void	*ft_free(void **ptr)
 {
+	if (ptr == NULL)
+		return (0);
 	if (*ptr)
 	{
 		free(*ptr);

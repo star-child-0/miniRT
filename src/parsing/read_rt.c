@@ -74,8 +74,7 @@ int	ft_print_error(char *err, t_scene **w, void *del, char **rt)
 	write(2, "\n", 1);
 	if (rt != NULL)
 		free_mat(rt);
-	if (del != NULL)
-		free(del);
+	ft_free(del);
 	t_scene_free(w);
 	exit (1);
 }
