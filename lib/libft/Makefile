@@ -51,7 +51,7 @@ SRC = ft_atoi.c ft_putchar_fd.c ft_strjoin.c ft_strtrim.c\
         get_next_line_utils.c ft_checkchar.c \
       	ft_putdiu.c ft_printf.c \
      	ft_wdt_prec.c ft_checkchar.c ft_print_tab.c ft_funlen.c \
-      	ft_putcsp.c ft_put_x.c checkset.c 
+      	ft_putcsp.c ft_put_x.c checkset.c ft_free.c 
 
 SRC_BONUS = ft_lstadd_front.c ft_lstnew.c ft_lstsize.c ft_lstadd_back.c\
 	    ft_lstlast.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c\

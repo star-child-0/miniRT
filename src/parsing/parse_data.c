@@ -76,12 +76,14 @@ void	*parse_amb(t_scene *w, char **line, char **rt)
 
 void *parse_cam(t_scene *w, char **line, char **rt)
 {
-	t_camera	*cam;
+	t_camera	*cam = NULL;
 
-	sux_malloc(sizeof(t_camera), w, rt);
-	cam->origin = pos_parse(line, w, NULL, rt);
+	cam = sux_malloc(sizeof(t_camera), w, rt);
+	cam->origin = pos_parse(line, w, (t_camera *)cam, rt);
 	next_val(line);
 	cam->direction = pos_parse(line, w, NULL, rt);
+	cam->direction = v3d_normalize(cam->direction);
+	next_val(line);
 	if (cam->direction->x > 1 || cam->direction->x < -1
 		|| cam->direction->y > 1 || cam->direction->y < -1
 		|| cam->direction->z > 1 || cam->direction->z < -1)

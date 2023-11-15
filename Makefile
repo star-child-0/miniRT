@@ -20,7 +20,7 @@ LIBS_TARGET := \
 				lib/libvec3/libvec3.a
 INCS        := \
 				include \
-				lib/libft/include \
+				lib/libft/\
 				lib/libmlx/include \
 				lib/libvec3/include
 SRC_DIR     := src
@@ -34,6 +34,7 @@ SRCS        := \
 				parsing/parse_data.c \
 				parsing/parse_obj.c \
 				parsing/parse_utils.c \
+				parsing/parse_utils2.c \
 				parsing/read_rt.c \
 				parsing/parsing.c \
 				\

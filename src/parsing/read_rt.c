@@ -12,23 +12,6 @@
 
 #include "parser.h"
 
- bool	get_unique(char *line, t_scene *scene, char type)
-{
-	bool	unique;
-
-	if (*line > 64 && *line < 91)
-		unique = true;
-	else if (*line > 96 && *line < 123)
-		unique = false;
-	else
-		errors_handler("parser: the first character of the type must be a "\
-			"letter", NULL, &scene);
-	if (!t_scene_check_unique(scene, type, unique))
-		errors_handler("parser: there can be a single object of the same type "\
-			"if its type starts with a capital letter ", NULL, &scene);
-	return (unique);
-}
-
 /*check extension (-3 stands for remove ".rt")*/
 int	ft_check_file(char *scene)
 {
@@ -44,7 +27,7 @@ int	ft_check_file(char *scene)
 }
 
 /*read line, clean and check parameters correctness*/
-void	ft_read_rt(t_scene *w, char *scene)
+void	ft_read_rt(t_scene **w, char *scene)
 {
 	char	*line;
 	char	*full_rt;
@@ -54,7 +37,7 @@ void	ft_read_rt(t_scene *w, char *scene)
 	full_rt = ft_calloc(1, 1);
 	fd = open(scene, O_RDONLY);
 	if (fd < 0)
-		ft_print_error(NOFILE, &w, full_rt, NULL);
+		ft_print_error(NOFILE, w, full_rt, NULL);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -66,20 +49,20 @@ void	ft_read_rt(t_scene *w, char *scene)
 	free(line);
 	rt = ft_split(full_rt, '\n');
 	free(full_rt);
-	contchar(w, rt);
-	ft_line_parser(&w, rt);
+	contchar(*w, rt);
+	ft_line_parser(w, rt);
 }
 
 /*open argument file, check extension and send to read*/
-int	ft_open_rt(t_scene *w, char **av)
+int	ft_open_rt(t_scene **w, char **av)
 {
 	int	fd;
 
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		return (ft_print_error(NOFILE,& w, NULL, NULL));
+		return (ft_print_error(NOFILE, w, NULL, NULL));
 	if (ft_check_file(av[1]) == 0)
-		return (ft_print_error(NO_RT, &w, NULL, NULL));
+		return (ft_print_error(NO_RT, w, NULL, NULL));
 	ft_read_rt(w, av[1]);
 	return (0);
 }

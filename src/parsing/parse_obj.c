@@ -43,7 +43,7 @@ void	*parse_plane(t_scene *w, char **line, char **rt)
 		|| p->direction->y > 1 || p->direction->y < -1
 		|| p->direction->z > 1 || p->direction->z < -1)
 		ft_print_error("plane direction norme must be in the range -1.0 / 1.0\n", &w, p, rt);
-	p->direction = v3d_normalize(p->direction);
+	// p->direction = v3d_normalize(p->direction);
 	next_val(line);
 	p->rgb = color_parse(line, w, p, rt);
 	return ((void *)p);
@@ -63,7 +63,7 @@ void	*parse_cylinder(t_scene *w, char **line, char **rt)
 		|| c->direction->y > 1 || c->direction->y < -1
 		|| c->direction->z > 1 || c->direction->z < -1)
 		ft_print_error("cylinder direction norme must be in the range -1.0 / 1.0\n", &w, c, rt);
-	c->direction= v3d_normalize(c->direction);
+	// c->direction= v3d_normalize(c->direction);
 	next_val(line);
 	c->diameter = tofloat(line);
 	if (c->diameter <= 0)

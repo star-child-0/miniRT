@@ -24,6 +24,7 @@
 # include <fcntl.h>
 # include <stdint.h>
 # include <stdarg.h>
+# include <stdbool.h>
 
 /*printf struct*/
 
@@ -152,5 +153,7 @@ void		ft_print_sign(int d, t_flags *flag);
 void		ft_print_numzero(t_flags *flag);
 void		ft_print_space_s(t_flags *flag);
 int			free_mat(char **matrix);
+void		*ft_free(void **ptr);
+char		*ft_char_append(char *s, char c, bool to_free);
 
 #endif

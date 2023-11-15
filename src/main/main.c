@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 
 	scene = NULL;
 	validator(argc, argv);
-	ft_open_rt(scene, argv);
+	ft_open_rt(&scene, argv);
 	window_init(&mlx);
 	render(&mlx, scene);
 	visualizator(mlx, &scene);
