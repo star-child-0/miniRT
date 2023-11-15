@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 19:27:21 by anvannin          #+#    #+#             */
-/*   Updated: 2023/11/02 18:14:00 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:38:48 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ static void	render_object(t_scene *scene, t_intersec *isec, t_lighting l)
 					(2.0 * v_dot_product(l.light, isec->normal))), l.light));
 	l.sfactor = pow(fmax(v_dot_product(l.viewdir, l.reflect), 0.0), 32);
 	l.specular = v_mult(rgb_to_v3(*al->rgb), l.sfactor * 0.5);
-	l.color = v_add_vec(v_add_vec(l.ambient, l.diffuse), l.specular);
+	l.color = v_add_vec(v_mult(v_add_vec(l.ambient, l.diffuse),
+				lg->brightness), l.specular);
 	isec->color = v3_to_rgb(v_mult_vec(l.color, rgb_to_v3(isec->color)));
 }
 
@@ -93,12 +94,15 @@ static void	render_object(t_scene *scene, t_intersec *isec, t_lighting l)
 void	lighting(t_scene *scene, t_intersec *isec)
 {
 	t_lighting			l;
+	t_light				*lg;
 	t_ambient_lightning	*al;
 
 	al = t_scene_get_ambient_light(scene);
+	lg = t_scene_get_light(scene);
 	l.ambient = v_mult(rgb_to_v3(*al->rgb), al->ratio);
 	if (render_shadow(scene, isec, l))
-		isec->color = v3_to_rgb(v_mult_vec(l.ambient, rgb_to_v3(isec->color)));
+		isec->color = v3_to_rgb(v_mult(v_mult_vec(l.ambient,
+						rgb_to_v3(isec->color)), lg->brightness));
 	else
 		render_object(scene, isec, l);
 	isec->color.red = fmax(0, fmin(isec->color.red, 255));

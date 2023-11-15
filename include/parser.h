@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iragusa <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 17:09:12 by iragusa           #+#    #+#             */
-/*   Updated: 2023/08/03 17:09:14 by iragusa          ###   ########.fr       */
+/*   Updated: 2023/11/15 18:10:36 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,23 +102,23 @@ typedef struct s_cylinder
 
 typedef struct s_scene
 {
-	int id; // num of object
-	unsigned char type;
-	bool unique;
-	bool selected;
-	void *data;
-	struct s_scene *prev;
-	struct s_scene *next;
-} t_scene;
+	int				id;
+	unsigned char	type;
+	bool			unique;
+	bool			selected;
+	void			*data;
+	struct s_scene	*prev;
+	struct s_scene	*next;
+}	t_scene;
 
-t_scene *t_scene_new(int id, char type, bool unique, void *data);
-void t_scene_add_back(t_scene **lst, t_scene *new);
-void t_scene_set_to_head(t_scene **scene);
-void t_scene_free(t_scene **scene);
-bool t_scene_check_unique(t_scene *scene, char type, bool uniq);
-t_camera *t_scene_get_camera(t_scene *scene);
-t_light *t_scene_get_light(t_scene *scene);
-t_ambient_lightning *t_scene_get_ambient_light(t_scene *scene);
+t_scene				*t_scene_new(int id, char type, bool unique, void *data);
+void				t_scene_add_back(t_scene **lst, t_scene *new);
+void				t_scene_set_to_head(t_scene **scene);
+void				t_scene_free(t_scene **scene);
+bool				t_scene_check_unique(t_scene *scene, char type, bool uniq);
+t_camera			*t_scene_get_camera(t_scene *scene);
+t_light				*t_scene_get_light(t_scene *scene);
+t_ambient_lightning	*t_scene_get_ambient_light(t_scene *scene);
 
 // Functions ------------------------------------------------------------------>
 
