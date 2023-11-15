@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_utils2.c                                     :+:      :+:    :+:   */
+/*   ft_findchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iragusa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/03 17:09:12 by iragusa           #+#    #+#             */
-/*   Updated: 2023/08/03 17:09:14 by iragusa          ###   ########.fr       */
+/*   Created: 2022/10/29 20:57:58 by iragusa           #+#    #+#             */
+/*   Updated: 2022/10/29 20:59:29 by iragusa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "parser.h"
-
-t_v3	*v3d_normalize(t_v3 *in)
+void	*ft_free(void **ptr)
 {
-	double	temp;
+	if (ptr == NULL)
+		return (0);
+	if (*ptr)
+	{
+		free(*ptr);
+		*ptr = 0;
+	}
+	return (*ptr);
+}
 
-	temp = in->x * in->x + in->y * in ->y + in->z * in->z;
-	if (temp == 1)
-		return (in);
-	temp = sqrt(temp);
-	return (&(t_v3){in->x / temp, in->y / temp, in->z / temp});
+int	free_mat(char **matrix)
+{
+	int	y;
+
+	y = 0;
+	if (matrix)
+	{
+		while (matrix[y] != NULL)
+		{
+			ft_free((void **)&matrix[y]);
+			y++;
+		}
+		ft_free ((void **)matrix);
+	}
+	return (0);
 }

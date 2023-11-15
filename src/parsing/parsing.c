@@ -12,38 +12,17 @@
 
 #include "parser.h"
 
-double	get_value(char **line, t_scene *scene)
-{
-	char	*tmp;
-	double	value;
-
-	tmp = ft_calloc(1, sizeof(char));
-	if (!tmp)
-		errors_handler("parser: calloc()", NULL, &scene);
-	while (line && *line && (**line == 9 || **line == 32))
-		(*line)++;
-	while (line && *line && **line && **line != 44 && **line != 32 && \
-		**line != 9)
-	{
-		tmp = ft_char_append(tmp, **line, true);
-		(*line)++;
-	}
-	if (line && *line && **line)
-		(*line)++;
-	value = ft_atof(tmp);
-	ft_free((void **)&tmp);
-	return (value);
-}
-
 t_rgb	*color_parse(char **line, t_scene *w, void *s, char **rt)
 {
 	t_rgb	*rgb;
 
 	rgb = sux_malloc(sizeof(t_rgb), w, rt);
 	next_val(line);
-	rgb->red = get_value(line, w);
-	rgb->green = get_value(line, w);
-	rgb->blue = get_value(line, w);
+	rgb->red = tofloat(line);
+	ft_comma(line, w, s, rt);
+	rgb->green = tofloat(line);
+	ft_comma(line, w, s, rt);
+	rgb->blue = tofloat(line);
 	if (rgb->red < 0 || rgb->red > 255 || rgb->green < 0 || rgb->green > 255 \
 		|| rgb->blue < 0 || rgb->blue > 255)
 		{
@@ -51,12 +30,12 @@ t_rgb	*color_parse(char **line, t_scene *w, void *s, char **rt)
 				free(s);
 			free_mat(rt);
 			free(rgb);
-			ft_print_error("color RGB out of range", w, s, rt);
+			ft_print_error("color RGB out of range", &w, s, rt);
 		}
 	return (rgb);
 }
 
-float	tofloat(char **str)
+double	tofloat(char **str)
 {
 	int		w;
 	double	d;
@@ -84,10 +63,7 @@ t_v3	*pos_parse(char **str, t_scene *w, void *s, char **rt)
 {
 	t_v3	*pos;
 
-	pos = (t_v3 *)malloc(sizeof(t_v3));
-	pos->x = 0;
-	pos->y = 0;
-	pos->z = 0;
+	pos = (t_v3 *)ft_calloc(sizeof(t_v3), 1);
 	next_val(str);
 	pos->x = tofloat(str);
 	ft_comma(str, w, s, rt);
@@ -106,27 +82,20 @@ void	ft_line_parser(t_scene **w, char **rt)
 	while (rt[i])
 	{
 		line = rt[i];
-		if (*line == 'R' && *line++)
-			parse_res(*w, &line, rt);
 		if (*line == 'A' && *line++)
-			t_scene_add_back(w, t_scene_new(i, AMBIENT_LIGHTNING, get_unique(line, *w, \
-			AMBIENT_LIGHTNING), parse_amb(*w, &line, rt)));
-		if (*line == 'C' && *line++)
-			t_scene_add_back(w, t_scene_new(i, CAMERA, get_unique(line, *w, \
-			CAMERA), (parse_cam(*w, &line, rt))));
-		if (*line == 'L' && *line++)
-			t_scene_add_back(w, t_scene_new(i, LIGHT, get_unique(line, *w, \
-			LIGHT), (parse_light(w, &line, rt))));
-		if (ft_strncmp(line, "sp", 2) == 0 && *line++)
-			t_scene_add_back(w, t_scene_new(i, SPHERE, get_unique(line, *w, \
-			SPHERE), (parse_sphere(w, &line, rt))));
-		if (ft_strncmp(line, "pl", 2) == 0 && *line++)
-			t_scene_add_back(w, t_scene_new(i, PLANE, get_unique(line, *w, \
-			PLANE),(parse_plane(w, &line, rt))));
-		if (ft_strncmp(line, "cy", 2) == 0 && *line++)
-			t_scene_add_back(w, t_scene_new(i, CYLINDER, get_unique(line, *w, \
-			CYLINDER), (parse_cylinder(w, &line, rt))));
-		ft_print_error("unexpected identifier in scene file", w, NULL, rt);
+			t_scene_add_back(w, t_scene_new(i, AMBIENT_LIGHTNING, true, parse_amb(*w, &line, rt)));
+		else if (*line == 'C' && *line++)
+			t_scene_add_back(w, t_scene_new(i, CAMERA, true, (parse_cam(*w, &line, rt))));
+		else if (*line == 'L' && *line++)
+			t_scene_add_back(w, t_scene_new(i, LIGHT, true, (parse_light(*w, &line, rt))));
+		else if (ft_strncmp(line, "sp", 2) == 0 && *line++)
+			t_scene_add_back(w, t_scene_new(i, SPHERE, true, (parse_sphere(*w, &line, rt))));
+		else if (ft_strncmp(line, "pl", 2) == 0 && *line++)
+			t_scene_add_back(w, t_scene_new(i, PLANE, true,(parse_plane(*w, &line, rt))));
+		else if (ft_strncmp(line, "cy", 2) == 0 && *line++)
+			t_scene_add_back(w, t_scene_new(i, CYLINDER, true, (parse_cylinder(*w, &line, rt))));
+		else
+			ft_print_error("unexpected identifier in scene file", w, NULL, rt);
 		i++;
 	}
 	free_mat(rt);

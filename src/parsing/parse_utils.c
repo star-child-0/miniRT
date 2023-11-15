@@ -30,7 +30,7 @@ void	*sux_malloc(unsigned int size, t_scene *w, char **rt)
 {
 	void	*ptr;
 
-	ptr = malloc(size);
+	ptr = ft_calloc(size, 1);
 	if (ptr == NULL)
 		ft_print_error(MALLOC, &w, NULL, rt);
 	return (ptr);
