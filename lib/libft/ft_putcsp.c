@@ -12,7 +12,7 @@
 #include "libft.h"
 
 void	ft_print_space_s(t_flags *flag)
-{	
+{
 	int	diff;
 
 	if (flag->len < flag->wdt)
@@ -72,7 +72,7 @@ void	ft_put_s(char *s, t_flags *flag)
 
 //if p 
 void	ft_put_p(unsigned long p, t_flags *flag)
-{	
+{
 	if (!p)
 	{
 		flag->len = 5;
@@ -87,7 +87,7 @@ void	ft_put_p(unsigned long p, t_flags *flag)
 	ft_putstr_fd("0x", 1);
 	ft_print_lowhex(p, flag);
 	if (flag->meno)
-	{	
+	{
 		flag->len += 2;
 		flag->ret -= 2;
 		ft_print_space(flag);

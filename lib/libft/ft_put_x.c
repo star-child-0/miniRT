@@ -17,7 +17,7 @@ char	*ft_struint(char *ptr, unsigned long u)
 
 	i = 0;
 	if (u == 0)
-	{	
+	{
 		ptr[i] = '0';
 		i++;
 	}
@@ -32,7 +32,7 @@ char	*ft_struint(char *ptr, unsigned long u)
 }
 
 void	ft_print_lowhex(unsigned long x, t_flags *flag)
-{	
+{
 	char	*hex;
 
 	if (x == 0 && flag->prec == 0 && flag->punto)
@@ -54,7 +54,7 @@ void	ft_print_lowhex(unsigned long x, t_flags *flag)
 }
 
 void	ft_print_uphex(unsigned long X, t_flags *flag)
-{	
+{
 	char	*hex;
 
 	if (X == 0 && flag->prec == 0 && flag->punto & !flag->zero)

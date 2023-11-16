@@ -63,7 +63,7 @@ static void	free_geometric_obj(t_scene **scene)
 
 void	t_scene_free(t_scene **scene)
 {
-t_scene	*tmp;
+	t_scene	*tmp;
 
 	tmp = NULL;
 	t_scene_set_to_head(scene);

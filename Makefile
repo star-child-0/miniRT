@@ -34,7 +34,6 @@ SRCS        := \
 				parsing/parse_data.c \
 				parsing/parse_obj.c \
 				parsing/parse_utils.c \
-				parsing/parse_utils2.c \
 				parsing/read_rt.c \
 				parsing/parsing.c \
 				\

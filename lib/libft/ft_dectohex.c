@@ -39,7 +39,7 @@ char	*ft_dectohex_upper(unsigned long num)
 	hex = (char *)malloc(sizeof(char) * (j + 1));
 	j = 0;
 	if (num == 0)
-	{	
+	{
 		hex[j] = '0';
 		j++;
 	}
@@ -66,7 +66,7 @@ char	*ft_dectohex_low(unsigned long num)
 	hex = (char *)malloc(sizeof(char) * (j + 1));
 	j = 0;
 	if (num == 0)
-	{	
+	{
 		hex[j] = '0';
 		j++;
 	}

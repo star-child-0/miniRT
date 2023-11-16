@@ -57,9 +57,10 @@ int	my_atoi(char **str)
 	return (i * neg);
 }
 
-void	ft_comma(char **str, t_scene *w, void *s, char **rt)
+int	ft_comma(char **str)
 {
 	if (**str != ',')
-		ft_print_error("parameters bad formatted\n", &w, s, rt);
+		return (1);
 	(*str)++;
+	return (0);
 }
