@@ -6,7 +6,7 @@
 /*   By: anvannin <anvannin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 17:09:12 by iragusa           #+#    #+#             */
-/*   Updated: 2023/11/15 18:10:36 by anvannin         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:17:11 by anvannin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define NOFILE "no such file!"
 # define NO_RT "ehy dude, only .rt file!"
 # define MALLOC "oh no, error in malloc() on memory allocation"
-# define ACL_ERR "check file rt! need 1 A, 1 C, at least 1 L and at most 1 R!"
+# define ACL_ERR "check file rt! need 1 A, 1 C, and at least 1 L!"
 # define CHECK_RT ",check your params!"
 
 // Structures ----------------------------------------------------------------->

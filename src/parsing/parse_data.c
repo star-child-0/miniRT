@@ -73,21 +73,19 @@ void	*parse_cam(t_scene *w, char **line, char **rt)
 	cam->origin = pos_parse(line, w, (t_camera *)cam, rt);
 	if (cam->origin == NULL)
 		ft_print_error("Bad formatted data in cam", &w, cam, rt);
+	if (cam->origin->x == 0 && cam->origin->y == 0 && cam->origin->z == 0)
+		cam->origin->z = 0.1;
 	next_val(line);
 	cam->direction = pos_parse(line, w, NULL, rt);
-	if (cam->direction == NULL)
+	if (cam->direction == NULL || (cam->direction->x > 1
+			|| cam->direction->x < -1 || cam->direction->y > 1
+			|| cam->direction->y < -1
+			|| cam->direction->z > 1 || cam->direction->z < -1))
 	{
+		if (cam->direction != NULL)
+			free(cam->direction);
 		free(cam->origin);
 		ft_print_error("Bad formatted data in cam", &w, cam, rt);
-	}
-	next_val(line);
-	if (cam->direction->x > 1 || cam->direction->x < -1
-		|| cam->direction->y > 1 || cam->direction->y < -1
-		|| cam->direction->z > 1 || cam->direction->z < -1)
-	{
-		free(cam->origin);
-		free(cam->direction);
-		ft_print_error("CAMERA: orientation out of range!", &w, cam, rt);
 	}
 	next_val(line);
 	cam = parse_cam_help(cam, line, w, rt);
